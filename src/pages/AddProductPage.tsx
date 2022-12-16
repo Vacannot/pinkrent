@@ -9,13 +9,13 @@ import {
   Card,
 } from "@mui/material";
 import * as yup from "yup";
-import { useFormik } from "formik";
-import { collection } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../backend/firebase";
-import { useAuth } from "../backend/Context";
-import { useNavigate } from "react-router";
+import {useFormik} from "formik";
+import {collection} from "firebase/firestore";
+import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+import {useCollection} from "react-firebase-hooks/firestore";
+import {db} from "../backend/firebase";
+import {useAuth} from "../backend/Context";
+import {useNavigate} from "react-router";
 
 const initialValues = {
   location: "",
@@ -26,6 +26,28 @@ const initialValues = {
   category: "",
   image: "",
 };
+const districts = [
+  "Askim",
+  "Backa",
+  "Bergsjön",
+  "Biskopsgården",
+  "Centrum",
+  "Frölunda",
+  "Gunnared",
+  "Härlanda",
+  "Högsbo",
+  "Kortedala",
+  "Linnestaden",
+  "Lundby",
+  "Lärjedalen",
+  "Majorna",
+  "Styrsö",
+  "Torslanda",
+  "Tuve-Säve",
+  "Tynnered",
+  "Älvsborg",
+  "Örgryte",
+];
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const validationSchema = yup.object({
@@ -54,7 +76,7 @@ export const uuid = () => {
 };
 
 function AddProductPage() {
-  const { createProduct } = useAuth();
+  const {createProduct} = useAuth();
 
   const navigate = useNavigate();
 
@@ -84,6 +106,10 @@ function AddProductPage() {
         marginRight: "auto",
         marginLeft: "auto",
         gap: 3,
+        "@media screen and (max-width: 600px)": {
+         marginBottom:"15rem"
+        },
+        
       }}
     >
       <form
@@ -101,7 +127,7 @@ function AddProductPage() {
           name="Image"
           type="file"
           placeholder="Add Image file"
-          inputProps={{ accept: "image/*" }}
+          inputProps={{accept: "image/*"}}
           error={formik.touched.title && Boolean(formik.errors.title)}
           onChange={(event) => {
             const file = (event.currentTarget as HTMLInputElement).files![0];
@@ -147,16 +173,6 @@ function AddProductPage() {
           variant="standard"
         />
         <TextField
-          id="location"
-          name="location"
-          label="Location"
-          value={formik.values.location}
-          onChange={formik.handleChange}
-          error={formik.touched.location && Boolean(formik.errors.location)}
-          helperText={formik.touched.location && formik.errors.location}
-          variant="standard"
-        />
-        <TextField
           id="phoneNumber"
           name="phoneNumber"
           label="Phone Number"
@@ -168,7 +184,28 @@ function AddProductPage() {
           helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
           variant="standard"
         />
-        <FormControl sx={{ minWidth: 120 }} required>
+        <FormControl sx={{minWidth: 120}} required>
+          <InputLabel id="location-label">Location</InputLabel>
+          <Select
+            labelId="location-label"
+            id="location"
+            name="location"
+            label="Location"
+            value={formik.values.location}
+            onChange={formik.handleChange}
+            error={formik.touched.location && Boolean(formik.errors.location)}
+            variant="standard"
+          >
+            {districts.map((item, i) => {
+              return (
+                <MenuItem value={item} key={i}>
+                  {item}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl sx={{minWidth: 120}} required>
           <InputLabel id="category-label">Category</InputLabel>
           <Select
             labelId="category-label"

@@ -3,12 +3,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React from "react";
 import * as yup from "yup";
-import { useFormik } from "formik";
-import { useAuth } from "../../backend/Context";
-import { TextField } from "@mui/material";
+import {useFormik} from "formik";
+import {useAuth} from "../../backend/Context";
+import {TextField} from "@mui/material";
 import {
   AccountCircleOutlined,
   AlternateEmailOutlined,
@@ -16,7 +16,7 @@ import {
   VisibilityOffOutlined,
   VisibilityOutlined,
 } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const validationSchema = yup.object({
   displayName: yup.string().required("Please enter your name"),
@@ -37,8 +37,8 @@ const initialValues = {
 };
 
 function RegisterForm() {
-  const { t } = useTranslation();
-  const { signup } = useAuth();
+  const {t} = useTranslation();
+  const {signup} = useAuth();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -56,7 +56,7 @@ function RegisterForm() {
   });
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({...values, showPassword: !values.showPassword});
   };
 
   return (
@@ -66,6 +66,9 @@ function RegisterForm() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        "@media screen and (max-width: 600px)": {
+          marginBottom:"15rem"
+        },
       }}
     >
       <h2
@@ -140,7 +143,7 @@ function RegisterForm() {
           variant="standard"
           InputProps={{
             startAdornment: (
-              <LockOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+              <LockOutlined sx={{color: "rgba(0, 0, 0, 0.54)"}} />
             ),
             endAdornment: (
               <IconButton onClick={handleClickShowPassword}>

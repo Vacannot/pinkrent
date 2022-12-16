@@ -115,12 +115,9 @@ function NotificationCard() {
                 }}
               >
                 <Box>
-                  <Typography variant="h6">
-                    Max Andersson {notification.requester}
-                  </Typography>
+                  <Typography variant="h6">{notification.requester}</Typography>
                   <Typography>
-                    {t("requests_to_rent")}
-                    {notification.title}
+                    {t("requests_to_rent")} {product.title}
                   </Typography>
                 </Box>
                 <Box>
@@ -213,7 +210,11 @@ function NotificationCard() {
                     justifyContent: "space-around",
                   }}
                 >
-                  <img src={product.image} alt="productImage" />
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    style={{maxWidth: "100px"}}
+                  />
                   <Typography gutterBottom variant="h5" component="div">
                     {product.title}
                   </Typography>

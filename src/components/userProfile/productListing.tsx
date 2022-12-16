@@ -102,7 +102,6 @@ const ProductInfo = ({
   setEditing: (edit: boolean) => void;
 }) => {
   const {t} = useTranslation();
-
   const [openConfirm, setOpenConfirm] = useState(false);
 
   return (
@@ -141,6 +140,7 @@ const ProductInfo = ({
         open={openConfirm}
         close={() => {
           setOpenConfirm(false);
+          window.location.reload();
         }}
       />
     </>
@@ -294,6 +294,7 @@ const EditProduct = ({
         open={openConfirm}
         close={() => {
           setOpenConfirm(false);
+          window.location.reload();
         }}
       />
     </form>

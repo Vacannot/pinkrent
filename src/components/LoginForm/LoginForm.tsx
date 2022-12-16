@@ -58,6 +58,7 @@ function LoginForm() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginBottom:"10rem"
       }}
     >
       <h2

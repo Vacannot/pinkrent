@@ -22,7 +22,7 @@ import Person2Icon from '@mui/icons-material/Person2';
 
   if (breakpoint)
     return (
-     <Box sx={{ "@media screen and (max-width: 971px)": { marginBottom:"8rem"}, display:"flex", justifyContent:"center"}} >
+     <Box sx={{ "@media screen and (max-width: 971px)": { marginBottom:"15rem"}, display:"flex", justifyContent:"center"}} >
       <Card sx={{maxWidth: 345, marginTop:"1rem"}}>
       <Box
         key={product.id}

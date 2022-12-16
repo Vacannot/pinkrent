@@ -64,8 +64,11 @@ export const ProductCard: FC<Props> = ({searchString}: Props) => {
       {filteredProducts
         .filter((item) => {
           if (filter === null) return true;
-
-          return item.category === filter;
+          if (filter === "free") {
+            return item.price === 0;
+          } else {
+            return item.category === filter;
+          }
         })
         .map((item) => {
           return (
